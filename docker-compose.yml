@@ -1,0 +1,20 @@
+version: "3.7"
+
+volumes:
+  memory:
+
+services:
+  twitch-downloader:
+    build: .
+    container_name: twitch-downloader
+    environment:
+      - CHANNELS=criticalrole,secretsleepoversociety
+      - PING_INTERVAL=120
+      - MEMORY_DIRECTORY=/memory
+      - VIDEO_DIRECTORY=/video
+      - OUTPUT_FORMAT=mp4
+      - LOOKBACK_NUM=2
+    volumes:
+      - /mnt/nas1/twitch:/video
+      - memory:/memory
+    restart: unless-stopped
