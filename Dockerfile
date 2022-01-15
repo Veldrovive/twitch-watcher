@@ -4,7 +4,12 @@ FROM python:3.10.1
 WORKDIR /app
 
 # Copy the files to the container
-COPY . /app
+COPY constants.py /app/constants.py
+COPY downloader.py /app/downloader.py
+COPY entry.py /app/entry.py
+COPY index.py /app/index.py
+COPY memory.py /app/memory.py
+COPY requirements.txt /app/requirements.txt
 
 # Install dependencies
 RUN pip install -r requirements.txt

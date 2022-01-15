@@ -29,7 +29,6 @@ def download (video_id, video_title, m3u8_url, channel_name):
     (
         ffmpeg
         .input(m3u8_url)
-        .trim(start_frame=0, end_frame=120)
         .output(video_name, format=constants.OUTPUT_FORMAT)
         .overwrite_output()
         .run()

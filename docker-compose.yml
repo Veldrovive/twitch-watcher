@@ -5,7 +5,7 @@ volumes:
 
 services:
   twitch-downloader:
-    build: .
+    image: veldrovive/twitch-downloader:latest
     container_name: twitch-downloader
     environment:
       - CHANNELS=criticalrole,secretsleepoversociety
