@@ -1,7 +1,7 @@
 import constants
 import memory
 import os
-import ffmpeg
+import subprocess
 
 import unicodedata
 import re
@@ -26,13 +26,8 @@ def download (video_id, video_title, m3u8_url, channel_name):
     # Download the video
     create_channel_dir(channel_name)
     video_name = f"{constants.VIDEO_DIRECTORY}/{channel_name}/{slugify(video_title)}.{constants.OUTPUT_FORMAT}"
-    (
-        ffmpeg
-        .input(m3u8_url)
-        .output(video_name, format=constants.OUTPUT_FORMAT)
-        .overwrite_output()
-        .run()
-    )
+    args = ["ffmpeg", "-i", m3u8_url, "-c", "copy", "-bsf:a", "aac_adtstoasc", "-y", video_name]
+    subprocess.run(args)
     # Add the video id to the json file
     memory.downloaded_video(video_id, video_title, channel_name)
 

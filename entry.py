@@ -64,7 +64,10 @@ def watch_channels (channel_names):
     while True:
         for channel_name in channel_names:
             print("Checking channel:", channel_name)
-            download_past_videos(channel_name)
+            try:
+                download_past_videos(channel_name)
+            except Exception as e:
+                print("Error downloading past videos for channel:", channel_name, e)
         print("Sleeping for", constants.PING_INTERVAL, "seconds...")
         time.sleep(constants.PING_INTERVAL)
         

@@ -18,4 +18,4 @@ RUN pip install -r requirements.txt
 RUN apt-get update && apt-get install -y ffmpeg
 
 # Run the application
-CMD ["python", "index.py"]
+CMD ["python", "-u", "index.py"]
